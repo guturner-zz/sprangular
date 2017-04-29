@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RandomNumberService } from './services/RandomNumberService';
+import { RandomNumberService, RandomNumberResponse } from './services/RandomNumberService';
 
 @Component({
   selector: 'my-app',
@@ -15,6 +15,6 @@ export class AppComponent {
   }
 
   callService() {
-    this.service.getRandomNumber().subscribe((val: any) => this.res = val);
+    this.service.getRandomNumber().subscribe((val: RandomNumberResponse) => this.res = val.num);
   }
 }

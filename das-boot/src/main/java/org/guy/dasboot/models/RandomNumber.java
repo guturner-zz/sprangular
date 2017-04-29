@@ -2,13 +2,13 @@ package org.guy.dasboot.models;
 
 public class RandomNumber {
 
-	private Integer number;
+	private Integer num;
 
-	public Integer getNumber() {
-		return number;
+	public Integer getNum() {
+		return num;
 	}
 
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setNum(Integer num) {
+		this.num = num;
 	}
 }

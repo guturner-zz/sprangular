@@ -13,13 +13,33 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/toPromise");
+var RandomNumberResponse = (function () {
+    function RandomNumberResponse() {
+    }
+    /**
+     * Helper method to map JSON to an object.
+     */
+    RandomNumberResponse.prototype.fromJSON = function (json) {
+        for (var propName in json) {
+            this[propName] = json[propName];
+        }
+        return this;
+    };
+    return RandomNumberResponse;
+}());
+exports.RandomNumberResponse = RandomNumberResponse;
 var RandomNumberService = (function () {
     function RandomNumberService(http) {
         this.http = http;
     }
     RandomNumberService.prototype.getRandomNumber = function () {
-        return this.http
-            .get('http://localhost:8080/randomNumber').map(function (response) { return response.text(); });
+        return this.http.get('http://localhost:8080/randomNumber').map(function (response) { return new RandomNumberResponse().fromJSON(response.json()); });
+        /**
+         * Before, our service was simply returning a single string representing a random number.
+         * We used
+         *  .map(response => response.text())
+         * because we were simply grabbing the number as plain text and returning it.
+         */
     };
     return RandomNumberService;
 }());
