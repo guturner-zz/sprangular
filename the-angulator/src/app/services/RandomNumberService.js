@@ -33,11 +33,12 @@ var RandomNumberService = (function () {
         this.http = http;
     }
     RandomNumberService.prototype.getRandomNumber = function () {
-        return this.http.get('http://localhost:8080/randomNumber').map(function (response) { return new RandomNumberResponse().fromJSON(response.json()); });
+        var obs = this.http.get('http://localhost:8080/randomNumber');
+        return obs.map(function (response) { return new RandomNumberResponse().fromJSON(response.json()); });
         /**
          * Before, our service was simply returning a single string representing a random number.
          * We used
-         *  .map(response => response.text())
+         *  obs.map(response => response.text())
          * because we were simply grabbing the number as plain text and returning it.
          */
     };

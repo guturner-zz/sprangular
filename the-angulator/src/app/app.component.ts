@@ -15,6 +15,9 @@ export class AppComponent {
   }
 
   callService() {
-    this.service.getRandomNumber().subscribe((val: RandomNumberResponse) => this.res = val.num);
+    this.service.getRandomNumber().subscribe(
+      (val: RandomNumberResponse) => this.res = val.num,
+      (err: Error) => this.res = "** das-boot is offline! **"
+    );
   }
 }
